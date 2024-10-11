@@ -5,6 +5,29 @@ canvas.height = 900;
 
 // global settings
 ctx.lineWidth = 10;
+const gradient1 = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+gradient1.addColorStop("0.2", "pink");
+gradient1.addColorStop("0.3", "blue");
+gradient1.addColorStop("0.4", "orange");
+gradient1.addColorStop("0.5", "yellow");
+gradient1.addColorStop("0.6", "green");
+gradient1.addColorStop("0.7", "turquoise");
+gradient1.addColorStop("0.8", "violet");
+gradient1.addColorStop("0.9", "purple");
+gradient1.addColorStop("0.10", "red");
+
+const gradient2 = ctx.createRadialGradient(
+  canvas.width - 0.5,
+  canvas.height * 0.5,
+  30,
+  canvas.width * 0.5,
+  canvas.height * 0.5,
+  200
+);
+gradient2.addColorStop("0.7", "purple");
+gradient2.addColorStop("0.5", "red");
+
+ctx.strokeStyle = gradient1;
 
 class Line {
   constructor(canvas) {
@@ -22,7 +45,7 @@ class Line {
   }
 
   draw(context) {
-    context.strokeStyle = "hsl(" + this.hue + ",100%,50%)";
+    // context.strokeStyle = "hsl(" + this.hue + ",100%,50%)";
     context.lineWidth = this.lineWidth;
     context.beginPath();
     context.moveTo(this.history[0].x, this.history[0].y);
