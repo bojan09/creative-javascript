@@ -4,7 +4,14 @@ canvas.width = 700;
 canvas.height = 900;
 
 // global settings
-ctx.lineWidth = 10;
+ctx.lineWidth = 55;
+
+// canvas shadows
+ctx.shadowOffsetX = 2;
+ctx.shadowOffsetY = 2;
+ctx.shadowColor = "black";
+
+// gradients
 const gradient1 = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
 gradient1.addColorStop("0.2", "pink");
 gradient1.addColorStop("0.3", "blue");
@@ -27,6 +34,10 @@ const gradient2 = ctx.createRadialGradient(
 gradient2.addColorStop("0.7", "purple");
 gradient2.addColorStop("0.5", "red");
 
+// canvas pattern
+const patternImage = document.getElementById("patternImage");
+const pattern1 = ctx.createPattern(patternImage, "no-repeat");
+
 ctx.strokeStyle = gradient1;
 
 class Line {
@@ -35,11 +46,11 @@ class Line {
     this.x = Math.random() * this.canvas.width;
     this.y = Math.random() * this.canvas.height;
     this.history = [{ x: this.x, y: this.y }];
-    this.lineWidth = Math.floor(Math.random() * 15 + 1);
+    this.lineWidth = Math.floor(Math.random() * 25 + 1);
     this.hue = Math.floor(Math.random() * 360);
     this.maxLength = Math.floor(Math.random() * 150 + 10);
     this.speedX = Math.random() * 1 - 0.5;
-    this.speedY = 7;
+    this.speedY = 5;
     this.lifeSpan = this.maxLength * 3;
     this.timer = 0;
   }
@@ -82,7 +93,7 @@ class Line {
 
 const linesArray = [];
 
-const numberOfLines = 20;
+const numberOfLines = 50;
 for (let i = 0; i < numberOfLines; i++) {
   linesArray.push(new Line(canvas));
 }
